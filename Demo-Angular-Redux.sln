@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.27004.2009
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Demo-Angular-Redux", "Demo-Angular-Redux\Demo-Angular-Redux.csproj", "{4A7D9983-033B-413B-A33C-1201DECE37A5}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{4A7D9983-033B-413B-A33C-1201DECE37A5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4A7D9983-033B-413B-A33C-1201DECE37A5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4A7D9983-033B-413B-A33C-1201DECE37A5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4A7D9983-033B-413B-A33C-1201DECE37A5}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {BD98B1A5-81CB-43A7-81F1-412BE9A5AFB8}
+	EndGlobalSection
+EndGlobal
