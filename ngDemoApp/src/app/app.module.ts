@@ -3,6 +3,11 @@ import { NgModule } from '@angular/core';
 
 
 import { AppComponent } from './app.component';
+import { RouterModule } from '@angular/router';
+import { APP_ROUTES } from './app.routing';
+import { AuthModule } from './auth/auth.module';
+import { NgReduxFormModule } from '@angular-redux/form';
+import { NgReduxModule } from '@angular-redux/store';
 
 
 @NgModule({
@@ -10,7 +15,11 @@ import { AppComponent } from './app.component';
     AppComponent
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    NgReduxFormModule,
+    NgReduxModule,
+    AuthModule.forRoot(),
+    RouterModule.forRoot(APP_ROUTES, {})
   ],
   providers: [],
   bootstrap: [AppComponent]
