@@ -5,11 +5,14 @@ import { NgModule } from '@angular/core';
 import { AppComponent } from './app.component';
 import { RouterModule } from '@angular/router';
 import { APP_ROUTES } from './app.routing';
-import { NgReduxFormModule } from '@angular-redux/form';
+//import { NgReduxFormModule } from '@angular-redux/form';
 import { NgReduxModule, NgRedux, DevToolsExtension } from '@angular-redux/store';
-import { rootReducer, IAppState, INIT_STATE } from '@store/store';
 
 import { environment } from 'environments/environment';
+import { AccountModule } from 'app/account/account.module';
+import { NgReduxRouterModule } from '@angular-redux/router';
+import { StoreModule } from '@store/store.module';
+
 
 @NgModule({
   declarations: [
@@ -19,14 +22,12 @@ import { environment } from 'environments/environment';
     BrowserModule,
     //NgReduxFormModule,
     NgReduxModule,
-    RouterModule.forRoot(APP_ROUTES, {})
+    NgReduxRouterModule,
+    RouterModule.forRoot(APP_ROUTES, {}),
+    AccountModule,
+    StoreModule
   ],
   providers: [],
   bootstrap: [AppComponent]
 })
-export class AppModule {
-  constructor(ngRedux: NgRedux<IAppState>, devTools: DevToolsExtension, ) {
-    ngRedux.configureStore(rootReducer, INIT_STATE, [],
-      !environment.production && devTools.isEnabled() ? [devTools.enhancer()] : []);
-  }
-}
+export class AppModule {}
