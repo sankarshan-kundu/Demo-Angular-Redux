@@ -1,32 +1,42 @@
 <div class="container">
-  <div class="row justify-content-md-center">
-    <div class="card m-3">
-      <div class="card-header">Login</div>
+  <div class="row justify-content-md-center align-items-center login-card-row">
+    <div class="card bg-light m-3">
+      <div class="card-header"><i class="fa fa-user-circle"></i> Login</div>
       <div class="card-body">
-        <form [connect]="['account','login']" [formGroup]="loginForm" (ngSubmit)="login()">
-          <div class="form-group">
-            <label for="exampleInputEmail1">Email address</label>
-            <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email" formControlName="email" name="email" ngControl ngModel>
+        <form [connect]="['account','formPayload']" [formGroup]="loginForm" (ngSubmit)="signIn()">
+          <div class="input-group">
+            <span class="input-group-addon">
+              <i class="fa fa-envelope-o fa-fw" aria-hidden="true"></i>
+            </span>
+            <input type="email" class="form-control" [class.is-invalid]="loginForm.controls['email'].dirty && loginForm.controls['email'].invalid"
+              [class.is-valid]="loginForm.controls['email'].dirty && loginForm.controls['email'].valid" aria-describedby="emailHelp"
+              placeholder="Enter email" formControlName="email" name="email" ngControl ngModel>
           </div>
-          <div class="form-group">
-            <label for="exampleInputPassword1">Password</label>
-            <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password" formControlName="password" name="password" ngControl ngModel>
+          <small class="form-text text-danger" *ngIf="loginForm.controls['email'].dirty && loginForm.controls['email'].invalid">Please enter a valid email address</small>
+          <div class="input-group mt-3">
+            <span class="input-group-addon">
+              <i class="fa fa-key fa-fw" aria-hidden="true"></i>
+            </span>
+            <input type="password" class="form-control" [class.is-invalid]="loginForm.controls['password'].dirty && loginForm.controls['password'].invalid"
+              [class.is-valid]="loginForm.controls['password'].dirty && loginForm.controls['password'].valid" placeholder="Password"
+              formControlName="password" name="password" ngControl ngModel>
           </div>
-          <div class="form-check">
+          <small class="form-text text-danger" *ngIf="loginForm.controls['password'].dirty && loginForm.controls['password'].invalid">Password must be minimum 6 characters long.</small>
+          <!--<div class="form-check">
             <label class="form-check-label">
               <input type="checkbox" class="form-check-input"> Check me out
             </label>
-          </div>
-          <button type="submit" class="btn btn-primary">Sign in</button>
+          </div>-->
+          <button type="submit" [disabled]="loginForm.invalid" class="btn btn-outline-dark btn-block mt-3">Sign in</button>
         </form>
       </div>
-      <div class="card-footer">
-        <div *ngIf="(loginState$|async).isSubmitted; else notSubmitted">
-          <div *ngIf="(loginState$|async).isValid; then validMsg else inValidMsg"></div>
-          <ng-template #validMsg>Login successfull</ng-template>
-          <ng-template #inValidMsg>Invalid username/password</ng-template>
+      <div class="card-footer text-center">
+        <div *ngIf="(accountState$|async).isSubmitted; else notSubmitted">
+          <div *ngIf="(accountState$|async).isValid; then validMsg else inValidMsg"></div>
+          <ng-template #validMsg><span class="text-success">Login successfull</span></ng-template>
+          <ng-template #inValidMsg><span class="text-danger">Invalid username/password</span></ng-template>
         </div>
-        <ng-template #notSubmitted>Please login</ng-template>
+        <ng-template #notSubmitted><span class="text-info">Please sign in to proceed</span></ng-template>
       </div>
     </div>
   </div>

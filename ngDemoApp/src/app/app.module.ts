@@ -12,6 +12,7 @@ import { environment } from 'environments/environment';
 import { AccountModule } from 'app/account/account.module';
 import { NgReduxRouterModule } from '@angular-redux/router';
 import { StoreModule } from '@store/store.module';
+import { HttpModule } from '@angular/http';
 
 
 @NgModule({
@@ -25,7 +26,8 @@ import { StoreModule } from '@store/store.module';
     NgReduxRouterModule,
     RouterModule.forRoot(APP_ROUTES, {}),
     AccountModule,
-    StoreModule
+    StoreModule,
+    HttpModule    
   ],
   providers: [],
   bootstrap: [AppComponent]

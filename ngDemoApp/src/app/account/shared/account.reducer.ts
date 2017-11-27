@@ -1,15 +1,20 @@
-import { ILoginState, INIT_LOGIN_STATE } from "./account.model";
 import { Action } from "redux";
-import { ACTION_ACCOUNT_LOGIN } from "app/account/shared/account.actions";
+import { IAccountState, ILoginState, INIT_ACCOUNT_STATE } from "./account.model";
+import { AccountActions } from "./account.actions";
 
-export function accountReducer(state: ILoginState = INIT_LOGIN_STATE, action: Action): ILoginState {
+export function accountReducer(state: IAccountState = INIT_ACCOUNT_STATE, action: Action): IAccountState {
     switch (action.type) {
-        case ACTION_ACCOUNT_LOGIN:
-            let isValid = state.login.email == "sk@msn.com" && state.login.password == "abc123";
+        case AccountActions.ACTION_ACCOUNT_LOGIN_SUCCESS:
             return {
                 ...state,
                 isSubmitted: true,
-                isValid: isValid
+                isValid: true
+            }
+        case AccountActions.ACTION_ACCOUNT_LOGIN_ERROR:
+            return {
+                ...state,
+                isSubmitted: true,
+                isValid: false
             }
         default: return state;
     }

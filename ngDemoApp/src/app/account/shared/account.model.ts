@@ -1,16 +1,16 @@
-export interface ILoginState {
+
+export interface IAccountState {
     isSubmitted: boolean;
     isValid: boolean;
-    login: {
-        email: string;
-        password: string;
-    }
+    formPayload: {}
 }
-export const INIT_LOGIN_STATE: ILoginState = {
+export const INIT_ACCOUNT_STATE = {
     isSubmitted: false,
     isValid: false,
-    login: {
-        email: "",
-        password: ""
-    }
+    formPayload: {}
+}
+
+export interface ILoginState {
+    email: string;
+    password: string;
 }

@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { NgRedux, select } from '@angular-redux/store';
+import { select, NgRedux } from '@angular-redux/store';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { ILoginState } from 'app/account/shared/account.model';
-import { ACTION_ACCOUNT_LOGIN } from 'app/account/shared/account.actions';
+import { AccountActions } from 'app/account/shared/account.actions';
 import { Observable } from 'rxjs/Observable';
 
 @Component({
@@ -12,23 +11,25 @@ import { Observable } from 'rxjs/Observable';
 })
 export class LoginComponent implements OnInit {
 
-  @select(['account']) loginState$;
+  @select(['account']) accountState$;
 
   loginForm: FormGroup;
 
   constructor(
-    private ngRedux: NgRedux<ILoginState>,
+    private accActions: AccountActions,
     private formBuilder: FormBuilder
   ) { }
 
   ngOnInit() {
     this.loginForm = this.formBuilder.group({
-      email: [],
-      password: []
+      email: ['', Validators.compose([Validators.required, Validators.email])],
+      password: ['', Validators.compose([Validators.required, Validators.minLength(6)])]
     });
   }
 
-  login() {
-    this.ngRedux.dispatch({ type: ACTION_ACCOUNT_LOGIN });
+  signIn() {
+    if (this.loginForm.valid) {
+      this.accActions.login();
+    }
   }
 }
